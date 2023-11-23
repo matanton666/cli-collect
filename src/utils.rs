@@ -7,6 +7,7 @@ use colored::{Colorize, ColoredString};
 pub static DEF_COLOR: &'static str = "white";
 
 
+
 pub fn print_err(err: Error) {
     eprintln!("ERROR: {} - \n{}", err.kind().to_string(), err.to_string().red());
 }
@@ -42,6 +43,7 @@ pub fn read_config_file<T: Serialize  + for<'d> Deserialize<'d>>(tool_name: &str
         if !conf_path.exists() {
             let default_content = toml::to_string(&default_conf).unwrap_or("".to_string());
             fs::write(&conf_path, default_content)?;
+            print_warning(format!("config file not found. creating {}", conf_path.to_string_lossy()).as_str());
         }
 
         // read from file
