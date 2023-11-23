@@ -1,0 +1,21 @@
+[package]
+name = "cli-collect"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+serde = {version = "1.0.189", features = ["derive"]}
+chrono = "0.4.31"
+clap = { version = "*", features = ["derive"] }
+colored = "*"
+directories = "5.0.1"
+humansize = "2.1.3"
+indexmap = "2.0.2"
+toml = "0.8.4"
+inquire = "*"
+
+
+[[bin]]
+name = "ils"
+src = "src/bin/ils.rs"
