@@ -26,6 +26,18 @@ impl ColoredStr {
         &self.content
     }
 
+    pub fn set_content(&mut self, new_content: String) {
+        self.content = new_content;
+    }
+    
+    pub fn append(&mut self, new_content: &str) {
+        self.content.push_str(new_content);
+    }
+
+    pub fn clear(&mut self) {
+        self.set_content("".to_string());
+    }
+
     pub fn set_color(&mut self, input_color: String) {
         // TODO: check on color to make sure it is compatible
         self.color = input_color;

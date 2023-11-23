@@ -64,17 +64,19 @@ impl Table {
     // returns the index of the line 
     pub fn print_interactive(&self) -> i32 {
         let headers = self.get_headers();
+        println!("{}", "-".repeat(headers.len()));
 
         let rows = self.get_values();
         match rows {
             Ok(rows) => {
                 let mut ans = Select::new(&headers, rows);
-
                 // * customize the renderer
                 ans.render_config.prompt_prefix.content = "";
                 ans.render_config.highlighted_option_prefix.style.bg = Some(Color::DarkRed);
                 ans = ans.with_help_message("↑↓ to move, enter to select, type to filter, Esc to exit");
                 let res = ans.raw_prompt();
+                
+                
                 
                 match res {
                     Ok(choice) => choice.index as i32,
